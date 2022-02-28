@@ -4,8 +4,8 @@ import sqlite3
 from PyQt5.QtSql import QSqlDatabase, QSqlQuery, QSqlTableModel
 from PyQt5.QtWidgets import QApplication, QMainWindow, QDialog
 
-from ui_files.main import Ui_MainWindow
-from ui_files.edit_db import Ui_Dialog
+from UI.main import Ui_MainWindow
+from UI.edit_db import Ui_Dialog
 
 
 class EditDataBase(QDialog, Ui_Dialog):
@@ -32,7 +32,7 @@ class EditDataBase(QDialog, Ui_Dialog):
     def save(self):
         try:
 
-            con = sqlite3.connect('coffee.sqlite')
+            con = sqlite3.connect('data/coffee.sqlite')
             cur = con.cursor()
 
             name = self.lineEdit.text()
@@ -107,7 +107,7 @@ class Coffee(QMainWindow, Ui_MainWindow):
 
     def show_table(self):
         db = QSqlDatabase.addDatabase('QSQLITE')
-        db.setDatabaseName('coffee.sqlite')
+        db.setDatabaseName('data/coffee.sqlite')
         db.open()
 
         model = QSqlTableModel(self, db)
